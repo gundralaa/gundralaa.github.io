@@ -1,0 +1,19 @@
+# Site configuration collection set
+
+title:
+email: gundralaa@berkeley.edu
+description: |
+  My personal blog site for personal projects and experience.
+  See what I'm up to!
+github_username: gundralaa
+show_excerpts: true
+
+# Pages
+header_pages:
+  - index.md
+  - about.md
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed

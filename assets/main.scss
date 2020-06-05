@@ -1,0 +1,15 @@
+---
+---
+
+@import "minima";
+
+//header
+.site-header {
+    border-top: 0px;
+    border-bottom: 0px;
+    min-height: $spacing-unit * 1.865;
+    line-height: $base-line-height * $base-font-size * 2.25;
+  
+    // Positioning context for the mobile navigation icon
+    position: relative;
+}
