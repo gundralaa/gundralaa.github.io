@@ -1,0 +1,78 @@
+---
+layout: default
+---
+<article class="post">
+
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title | escape }}</h1>
+    </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0"></script>
+  <script>
+    const player = new mm.Player()
+
+    var states = ["kick", "snare", "blank"];
+    var transitions = {
+        "kick" : [0.1, 0.5, 0.4],
+        "snare" : [0.5, 0.1, 0.4],
+        "blank" : [0.8, 0.1, 0.1],
+    };
+
+    function getRandIntUniform(end) {
+        return Math.floor(Math.random() * (end + 1));
+    }
+    
+    function getRandIntDist(list) {
+        var val = Math.random();
+        var sum = 0;
+        for(i=0; i<list.length; i++) {
+            sum += list[i];
+            if (val <= sum) {
+                console.log(i);
+                return i;
+            } 
+        }
+        return 0;
+    }
+
+    function genBeat() {
+        var DRUMS = {
+            notes: [],
+            names: [],
+            quantizationInfo: {stepsPerQuarter: 4},
+            tempos: [{time: 0, qpm: 60}],
+            totalQuantizedSteps: 16
+        };
+        console.log(DRUMS);
+        var cur = states[getRandIntUniform(0, 2)];
+        for (j=0; j < 16; j++) {
+            DRUMS.names.push(cur);
+            if (cur == "kick") {
+                DRUMS.notes.push(
+                    { pitch: 36, quantizedStartStep: j, quantizedEndStep: j+1, isDrum: true } 
+                );
+            }
+            else if (cur == "snare") {
+                DRUMS.notes.push(
+                    { pitch: 38, quantizedStartStep: j, quantizedEndStep: j+1, isDrum: true } 
+                );
+            }
+            cur = states[getRandIntDist(transitions[cur])];
+        }
+        return DRUMS;
+    }
+
+    function playOnClick() {
+        let beat = genBeat();
+        console.log(beat);
+        document.getElementById("p1").innerHTML = beat.names.toString();
+        player.start(beat);
+    }
+
+  </script>
+  <button id="play" onclick="playOnClick()">Play</button>
+  <p id="p1">Note Order Here</p>
+</article>

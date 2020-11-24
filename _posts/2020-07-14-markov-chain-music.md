@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: beat_demo
 title: "Markov Beats"
 ---
 An intresting idea I've recently been exposed to is the Markov Chain. The model is simple yet powerful. By linking together a set of states with a set of transition probabilities, you can create intresting state models that express probablistic natures.
@@ -50,6 +50,6 @@ for (int i=0; i < beats; i++) {
     ]
 }
 ```
-The code assumes two helper functions needed to sample from a uniform distribution and a defined distribution. Overall, this javascript module could be then ported to a more robust feature that will be more fully developed.
+The code assumes two helper functions needed to sample from a uniform distribution and a defined distribution. Overall, this javascript module could be then ported to a more robust feature that will be more fully developed. Try it out below its different each time!
 
 
