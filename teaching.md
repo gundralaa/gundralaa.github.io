@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Teaching Resources
+title: Teaching
 permalink: /teach/
 ---
 ### Purpose
@@ -9,6 +9,8 @@ This page hosts all discussion sheet notes and occasional primers on various pro
 
 ### Discussion Notes
 Discussion notes include all markings made during the corresponding discussion with additional notes and answers for things people found tricky or confusing.
+
+**CS 70 Summer 2021**
 
 - Monday June 21
   - [Disc 1a](/assets/sum2021/disc_notes/dis01a.pdf): Logic Introduction
