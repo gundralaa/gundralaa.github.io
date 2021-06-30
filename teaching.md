@@ -27,4 +27,4 @@ Week 2
 
 - Tuesday June 29
   - Disc 2a: Graphs
-  - [Recording] (https://drive.google.com/file/d/19KJ4aHY4MlU-CCFeXQishHhGv82wgYlF/view?usp=sharing)
+  - [Recording](https://drive.google.com/file/d/19KJ4aHY4MlU-CCFeXQishHhGv82wgYlF/view?usp=sharing)
