@@ -12,13 +12,19 @@ Discussion notes include all markings made during the corresponding discussion w
 
 **CS 70 Summer 2021**
 
+Week 1
+
 - Monday June 21
   - [Disc 1a](/assets/sum2021/disc_notes/dis01a.pdf): Logic Introduction
-- Monday June 22
+- Tuesday June 22
   - [Disc 1b](/assets/sum2021/disc_notes/dis01b.pdf): Proof Techniques
-- Monday June 23
+- Wednesday June 23
   - [Disc 1c](/assets/sum2021/disc_notes/dis01c.pdf): Induction
-- Monday June 24
+- Thursday June 24
   - Disc 1d: Sets and Functions
 
+Week 2
 
+- Tuesday June 29
+  - Disc 2a: Graphs
+  - [Recording] (https://drive.google.com/file/d/19KJ4aHY4MlU-CCFeXQishHhGv82wgYlF/view?usp=sharing)
