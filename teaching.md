@@ -21,10 +21,15 @@ Week 1
 - Wednesday June 23
   - [Disc 1c](/assets/sum2021/disc_notes/dis01c.pdf): Induction
 - Thursday June 24
-  - Disc 1d: Sets and Functions
+  - [Disc 1d](/assets/sum2021/disc_notes/dis01d.pdf): Sets and Functions
 
 Week 2
 
 - Tuesday June 29
-  - Disc 2a: Graphs
+  - [Disc 2a](/assets/sum2021/disc_notes/dis02a.pdf): Graphs
   - [Recording](https://drive.google.com/file/d/19KJ4aHY4MlU-CCFeXQishHhGv82wgYlF/view?usp=sharing)
+- Wednesday June 30
+  - [Disc 2b](/assets/sum2021/disc_notes/dis02b.pdf): Mod Math
+  - Recording
+ 
+
