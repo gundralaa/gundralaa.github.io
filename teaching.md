@@ -14,22 +14,29 @@ Discussion notes include all markings made during the corresponding discussion w
 
 Week 1
 
-- Monday June 21
-  - [Disc 1a](/assets/sum2021/disc_notes/dis01a.pdf): Logic Introduction
-- Tuesday June 22
-  - [Disc 1b](/assets/sum2021/disc_notes/dis01b.pdf): Proof Techniques
-- Wednesday June 23
-  - [Disc 1c](/assets/sum2021/disc_notes/dis01c.pdf): Induction
-- Thursday June 24
-  - [Disc 1d](/assets/sum2021/disc_notes/dis01d.pdf): Sets and Functions
+- [Disc 1a](/assets/sum2021/disc_notes/dis01a.pdf): Logic Introduction
+- [Disc 1b](/assets/sum2021/disc_notes/dis01b.pdf): Proof Techniques
+- [Disc 1c](/assets/sum2021/disc_notes/dis01c.pdf): Induction
+- [Disc 1d](/assets/sum2021/disc_notes/dis01d.pdf): Sets and Functions
 
 Week 2
 
-- Tuesday June 29
-  - [Disc 2a](/assets/sum2021/disc_notes/dis02a.pdf): Graphs
+- [Disc 2a](/assets/sum2021/disc_notes/dis02a.pdf): Graphs
   - [Recording](https://drive.google.com/file/d/19KJ4aHY4MlU-CCFeXQishHhGv82wgYlF/view?usp=sharing)
-- Wednesday June 30
-  - [Disc 2b](/assets/sum2021/disc_notes/dis02b.pdf): Mod Math
-  - Recording
+- [Disc 2b](/assets/sum2021/disc_notes/dis02b.pdf): Mod Math
+- [Disc 2c](/assets/sum2021/disc_notes/dis02c.pdf): Mod Practice + CRT
+
+Week 3
+
+- [Disc 3a](/assets/sum2021/disc_notes/dis03a.pdf): RSA
+- [Disc 3b](/assets/sum2021/disc_notes/dis03b.pdf): Polynomials
+- [Disc 3b](/assets/sum2021/disc_notes/dis03c.pdf): Counting Intro
+
+Week 4
+
+- [Disc 4a](/assets/sum2021/disc_notes/dis04a.pdf): Counting Continued
+- [Disc 4b](/assets/sum2021/disc_notes/dis04b.pdf): Probability Intro
+- [Disc 4c](/assets/sum2021/disc_notes/dis04c.pdf): Conditional Probability
+
  
 
