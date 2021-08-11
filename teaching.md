@@ -12,6 +12,10 @@ Discussion notes include all markings made during the corresponding discussion w
 
 **CS 70 Summer 2021**
 
+Final Review: Joint Distributions
+- [Worksheet](/assets/sum2021/Joint-Dist-blank.pdf)
+- [Recording](https://drive.google.com/file/d/1VsSG1qX4arJTomdbyF1LPnnI5WQbj2cA/view?usp=sharing)
+
 Week 1
 
 - [Disc 1a](/assets/sum2021/disc_notes/dis01a.pdf): Logic Introduction
