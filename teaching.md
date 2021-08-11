@@ -14,7 +14,12 @@ Discussion notes include all markings made during the corresponding discussion w
 
 Final Review: Joint Distributions
 - [Worksheet](/assets/sum2021/Joint-Dist-blank.pdf)
+- [Notes](/assets/sum2021/Joint-Dist.pdf)
 - [Recording](https://drive.google.com/file/d/1VsSG1qX4arJTomdbyF1LPnnI5WQbj2cA/view?usp=sharing)
+
+Spring 2018 Final
+- [Notes](/assets/sum2021/final_sp18.pdf)
+- [Recording](https://drive.google.com/file/d/16qtONC2msWqYCwEbD9E_IPzNig5j4kdS/view?usp=sharing)
 
 Week 1
 
