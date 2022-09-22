@@ -20,7 +20,7 @@ A little about me...
 * Deep Learning and ML (Tensorflow, Numpy)
 * Languages (Python, Java, Javascript)
 
-Checkout my [resume](/assets/AbhiGResume_10_20.pdf) directly for more information!
+Checkout my [resume](https://drive.google.com/drive/folders/1wH2biXKj69MzdWtkkmF7PEs7Fwi2iepl?usp=sharing) directly for more information!
 
 ### Demos
 Coming Soon!
