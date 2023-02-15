@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Rasterizer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2023</h1>
+<h1 align="middle">Project 1: Rasterizer</h1>
+<h2 align="middle">Abhi Gundrala, CS184-SP23</h2>
+
+<br><br>
+
+<div>
+
+<h2 align="middle">Overview</h2>
+<p>The project introduced rasterization and texure mapping in computer graphics. Specifically, given abstract coordinates in screen space that represent
+  objects to be rendered, the rasterizer is used to calculate the pixels and their values in the actual screen that help actualize that coordinate directive.
+  I've learned that are required for this pipeline are through discretizing a continuous space using contiunous functions and calculations.
+  We're basically simulating a world and sampling it to the viewer to view through a pixel display which is not at all how I thought graphics was framed.
+</p>
+
+<h2 align="middle">Section I: Rasterization</h2>
+<h3 align="middle">Part 1: Rasterizing single-color triangles</h3>
+<p> Rasterizing triangles starts with continuous vertex coordinates in the screen space. In our case the coordinates were already scaled to the screen size.
+  Using these vertex values, line equations can be formed that check if a point is in the direction of the normal vector of one of the edges.
+  The vectors defined can wind in two directions where either the left or right neighboor is chosen as the endpoint of the vector when starting from the same inital vertex.
+  For each sample location, a line test is performed to check if the point is included in the triangle. The sample color can depend on the type of triangle that is being rasturized.
+  The rasterizer then resolves the sample buffer to a frame buffer that has a rgb value for each pixel. The samples for a specific pixel are interpolated and discretized to be represented in the frame buffer.    
+</p>
+
+<p>
+  The algorithm is no worse that one that checks each sample within the bounding box of the triangle since the pixels locations sampled
+  are bounded by the screen width and height and the largest and smallest x, y vertex values. Essentially only pixels in the bounding box of the triangle are sampled.
+</p>
+
+<img src="assets/images/cs184p1/test4_default.png" align="middle" width="400px"/>
+<figcaption align="middle">basic/test4.svg default settings</figcaption>
+
+
+<h3 align="middle">Part 2: Antialiasing triangles</h3>
+<p> The supersampling algorithm revolves around the sample buffer which is a dynamic buffer that changes with changes in the sample rate around
+  changes in the screen dimensions. This vector holds sample rate number of samples for each pixel. With supersampling, the rasterizer fills the 
+  sample buffer and the resolve_framebuffer method is called to condense the samples into a single pixel value. The rasterization pipeline peices
+  that manipulated the sample buffer size in any way were modified to include the new size with the sample rate and all methods that indexed into specific pixels
+  like fill_pixel were modified to index into a set of samples for the corresponding pixel.
+</p>
+<p>
+  Supersampling allows for the sampling the image with a higher frequency where the square root of the sample rate determines the frequency of samples
+  per pixel. By the nyquist criteria, the higher sampling rate allows for the representation of higher frequencies without aliasing that when
+  downsampled to resolve into the framebuffer, contains information from these higher frequency samples. This is why supersampling is useful, as it allows
+  for the representation of higher frequencies in our image without aliasing.
+</p>
+
+<div align="middle">
+  <table style="width=100%">
+    <tr>
+      <td>
+        <img src="images/test4_1px.png" align="middle" width="400px"/>
+        <figcaption align="middle">Sample rate 1</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="images/test4_4px.png" align="middle" width="400px"/>
+        <figcaption align="middle">Sample rate 4</figcaption>
+      </td>
+      <td>
+        <img src="images/test4_16px.png" align="middle" width="400px"/>
+        <figcaption align="middle">Sample rate 16</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p>
+  From the images, supersampling is demonstrated to be effective in sharpening edges and removing jaggies
+  that we can observe in the single pixel sampling rate. The multi pixel sampling rates show different shades of blue
+  that signify pixels that had corresponding samples that were inside the triangle according to the line equation. This method of rendering
+  allows for this boundary to be more accurate to the floating point triangle boundary
+</p>
+
+<h3 align="middle">Part 3: Transforms</h3>
+<p> The robot svg is trying to meditate after working tirelessly on this project :0. I'm glad the homogenous transformation matrices
+  that were implemented helped change our protagonists positions.
+</p>
+
+<div align="middle">
+  <img src="images/my_robot.svg" align="middle" width="400px"/>
+  <figcaption align="middle">My robot</figcaption>
+</div>
+
+<h2 align="middle">Section II: Sampling</h2>
+
+<h3 align="middle">Part 4: Barycentric coordinates</h3>
+<p> The barycentric coordinates are a way to represent the proportional distance from each of the vertices in a triangle as vector coordinates
+for any point in the triangle. Each (x,y) pair can be constructed as a linear combination of each of the different vertices of the triangle and the 
+weights (alpha, beta, gamma) used in this combination can be used to continuously interpolate various things. The triangle below uses the barycentric coordinate weights to
+asign each point in the triangle weighted average of each of the vertex colors where the closer to the vertex you are, the larger the weight towards that certain color.
+</p>
+
+<div align="middle">
+  <img src="images/color_gradient.png" align="middle" width="400px"/>
+  <figcaption align="middle">Gradient triangle using barycentric coordinates</figcaption>
+</div>
+  
+<div align="middle">
+  <img src="images/test7_def.png" align="middle" width="400px"/>
+  <figcaption align="middle">Color wheel test7 using gradient triangles</figcaption>
+</div>
+
+<h3 align="middle">Part 5: "Pixel sampling" for texture mapping</h3>
+<p>
+  Pixel sampling is a way of determining the values of pixels needed to render a textured polygon. As a reference for what colors need to appear spatially
+  in the image, the texture map has its own set of coordinates in a coordinate space where each triangle vertex in the render space has a direct correlate
+  for a vertex in the texture space.
+
+  For a specific sample coordinate (x,y), the texture coordinate is calculated using the barycentric weights and this coordinate (u, v) is used
+  to sample the texture and assign the pixel a color value. The way this texure pixel is sampled can vary and the two methods that were implemented
+  in this project were the nearest and bilinear pixel sampling methods.
+
+  The nearest pixel sampling method takes the (u, v) coordinate and finds the nearest pixel center coordinate and assigns that texture pixel value to the sample.
+  Only the nearest pixel is used and no other information is interpolated to find pixel coordinates that are between pixel centers. The bilinear sampling method
+  takes the
+</p>
+
+<h3 align="middle">Part 6: "Level sampling" with mipmaps for texture mapping</h3>
+
+
+
+<h2 align="middle">Section III: Art Competition</h2>
+<p>If you are not participating in the optional art competition, don't worry about this section!</p>
+
+<h3 align="middle">Part 7: Draw something interesting!</h3>
+
+</body>
+</html>
