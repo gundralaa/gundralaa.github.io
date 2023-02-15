@@ -133,24 +133,118 @@ asign each point in the triangle weighted average of each of the vertex colors w
   Pixel sampling is a way of determining the values of pixels needed to render a textured polygon. As a reference for what colors need to appear spatially
   in the image, the texture map has its own set of coordinates in a coordinate space where each triangle vertex in the render space has a direct correlate
   for a vertex in the texture space.
-
+</p>
+<p>
   For a specific sample coordinate (x,y), the texture coordinate is calculated using the barycentric weights and this coordinate (u, v) is used
   to sample the texture and assign the pixel a color value. The way this texure pixel is sampled can vary and the two methods that were implemented
   in this project were the nearest and bilinear pixel sampling methods.
-
+</p>
+<p>
   The nearest pixel sampling method takes the (u, v) coordinate and finds the nearest pixel center coordinate and assigns that texture pixel value to the sample.
   Only the nearest pixel is used and no other information is interpolated to find pixel coordinates that are between pixel centers. The bilinear sampling method
-  takes the
+  takes the surrounding 4 pixels and interpolates the linear distance between each pixel center. The ratio of the distance between the point and one of two vertices
+  can be used as a weight to interpolate the color values as we did with the barymetric coordinates. The colors interpolated from the top and bottom pairs of points in x
+  axis are then used as endpoints in a y axis interpolation.
+</p>
+
+<div align="middle">
+  <table style="width=100%">
+    <tr>
+      <td>
+        <img src="assets/images/cs184p1/text_pn1.png" align="middle" width="400px"/>
+        <figcaption align="middle">Nearset sampling; 1 sample per pixel</figcaption>
+      </td>
+      <td>
+        <img src="assets/images/cs184p1/text_pbl1.png" align="middle" width="400px"/>
+        <figcaption align="middle">Bilinear sampling; 1 sample per pixel</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="assets/images/cs184p1/text_pn16.png" align="middle" width="400px"/>
+        <figcaption align="middle">Nearest sampling; 16 samples per pixel</figcaption>
+      </td>
+      </td>
+      <td>
+        <img src="assets/images/cs184p1/text_pbl16.png" align="middle" width="400px"/>
+        <figcaption align="middle">Bilinear sampling; 16 samples per pixel</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p>
+  The image shows a clear difference between the gradient of texture when using nearest sampling vs bilinear sampling. Due to
+  the continuous interpolation of multiple points in the vicinity of the sample, bilinear sampling produces softer edges and less jagged
+  pixel colors even when sampling only 1 sample per pixel. The biggest difference between the methods will probably arise when textures are applied
+  with highly varying pixel colors. In the berkeley seal example, the blue and white edges are very sudden and due to the warping, the lines are not straight
+  creating jaggies. The bilinear interpolation softens this boundary by sampling around the boundary and interpolating for samples that are on these edges
+  contributing to a softer edge.
 </p>
 
 <h3 align="middle">Part 6: "Level sampling" with mipmaps for texture mapping</h3>
+<p>
+  Level sampling allows for samples to be generated from lower frequency representations of textures based on how far
+  the texture is and how translation in the pixel screen space maps to translation in the texture coordinate space. If translation
+  in screen space coresponds to 2 units of travel in texture space, we can sample the texture colors from a texture that is half the width and
+  half the size of the original image (level 1 mipmap). Since higher frequencies are removed from the new image we are sampling
+  aliasing is reduced as these high frequencies can no longer act as lower frequency noise when undersampled. Since our pixel scaling is now 2 times our texture scaling
+  we are essentially sampling at a lower spatial freqency on the texture image when we are zoomed out. The level combats the potential for aliasing.
+  Once a continuous level value is calculated based on the magnitude of the texture differentials, either the closest level mipmap can be sampled
+  or the color value from two levels can be interpolated linearly based on the continuous level value. This method is trilinear interpolation.
+</p>
 
+<div align="middle">
+  <table style="width=100%">
+    <tr>
+      <td>
+        <img src="assets/images/cs184p1/zero_n.png" align="middle" width="400px"/>
+        <figcaption align="middle">Nearest sampling; Zero level</figcaption>
+      </td>
+      <td>
+        <img src="assets/images/cs184p1/zero_lin.png" align="middle" width="400px"/>
+        <figcaption align="middle">Bilinear sampling; Zero level</figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="assets/images/cs184p1/near_n.png" align="middle" width="400px"/>
+        <figcaption align="middle">Nearest sampling; Nearest level</figcaption>
+      </td>
+      </td>
+      <td>
+        <img src="assets/images/cs184p1/near_lin.png" align="middle" width="400px"/>
+        <figcaption align="middle">Bilinear sampling; Nearest level</figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
 
+<p>
+  As one can notice from the images, the level creates a downsampled texture that is sampled and overlayed on the
+  polygon based on the object translations. Using the nearest level therefore results in a smoother image especially since we 
+  are zoomed out in these images. The antialiasing is especially noticable when comparing the left images since we can see artifacts
+  on the border of the monkey and the background while using the nearest level these edges are smoothed out. Level sampling therefore provides some
+  degree of antialiasing power. In addition, as we've seen previously the bi-linear texture sampling further increases sampling rate to
+  combat aliasing. Observe the whites of the monkey's eyes as the antialiasing increases.
+</p> 
+<p>
+  The tradeoffs for the techniques come with memory and speed respectively. In the implementation that I worked on,
+  a set of texture mip levels were stored for a texture that contained downsampled versions of the original texture. This is extra
+  memory overhead when not using level sampling. However, due to the nature of reducing the dimensions of the images by half each time,
+  storing mip maps only takes one third more memory than if we only stored the original texture. Essentially, the mip maps fit in one extra
+  channel of the original texture making this relatively space efficent. Speed is comprimised noticably when using bilinear sampling
+  since now each sample requires accessing 4 texture pixel values and running 3 linear interpolations. This is opposed to only accessing one texture pixel
+  using nearest sampling. Generally, level sampling seems to provide antialiasing support when zoomed out of an image and the bilinear filter
+  provides smoothing when zoomed in close.
+</p>
 
-<h2 align="middle">Section III: Art Competition</h2>
-<p>If you are not participating in the optional art competition, don't worry about this section!</p>
-
-<h3 align="middle">Part 7: Draw something interesting!</h3>
+<p>
+  gundralaa.github.io/cs184p1.html
+</p>
+<a href="https://gundralaa.github.io/cs184p1.html">Writeup Website</a>
 
 </body>
 </html>
