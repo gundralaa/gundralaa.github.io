@@ -22,6 +22,5 @@ A little about me...
 
 Checkout my [resume](https://drive.google.com/drive/folders/1wH2biXKj69MzdWtkkmF7PEs7Fwi2iepl?usp=sharing) directly for more information!
 
-
-
-
+### CS 184 Projects
+* Project 1: [Rasterizer](/cs184p1.html)
