@@ -23,3 +23,12 @@ main() {
 }
 ```
 
+C++
+``` c++
+int main() {
+    std::cout << "Hello, world";
+    return 0
+}
+```
+
+
