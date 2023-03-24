@@ -2,7 +2,7 @@
 layout: post
 title:  "Ray Tracer - Reflection and Refraction"
 ---
-https://gundralaa.github.io/2023/03/20/cs184-ray-reflect.html
+https://gundralaa.github.io/2023/03/23/cs184-ray-reflect.html
 
 CS184 Project 3-2
 
